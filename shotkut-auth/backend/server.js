@@ -11,9 +11,27 @@ connectDB();
 
 const app = express();
 
+// Vercel gives every deployment its own URL (production, git-branch,
+// and per-commit preview URLs). Matching one exact CLIENT_URL breaks the
+// moment you open a different one, so instead we allow:
+//   1. localhost (local dev)
+//   2. the exact CLIENT_URL from env (your production domain)
+//   3. any *.vercel.app subdomain belonging to this project
+const allowedOriginPattern = /^https:\/\/shotkut-gpuh[a-z0-9-]*\.vercel\.app$/;
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true); // same-origin / curl / server-to-server
+      const isLocalhost = origin.startsWith("http://localhost");
+      const isConfiguredClient = origin === process.env.CLIENT_URL;
+      const isVercelPreview = allowedOriginPattern.test(origin);
+
+      if (isLocalhost || isConfiguredClient || isVercelPreview) {
+        return callback(null, true);
+      }
+      return callback(new Error(`Origin ${origin} not allowed by CORS`));
+    },
     credentials: true, // required so the browser sends/receives the refresh cookie
   })
 );

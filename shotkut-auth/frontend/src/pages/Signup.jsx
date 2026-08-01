@@ -32,8 +32,7 @@ const Signup = () => {
     <div className="min-h-screen bg-ink flex items-center justify-center px-4 font-body">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <span className="text-2xl font-semibold text-paper">shot</span>
-          <span className="text-2xl font-semibold text-teal">kut</span>
+          <span className="text-2xl font-extrabold text-paper">sylva</span>
         </div>
 
         <Card className="p-8">
@@ -53,7 +52,7 @@ const Signup = () => {
               autoComplete="name"
               value={form.name}
               onChange={handleChange}
-              className="w-full rounded-lg bg-ink border border-border px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-teal"
+              className="w-full rounded-lg bg-ink border border-border px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-cyan"
               placeholder="Full name"
             />
             <input
@@ -63,7 +62,7 @@ const Signup = () => {
               autoComplete="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full rounded-lg bg-ink border border-border px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-teal"
+              className="w-full rounded-lg bg-ink border border-border px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-cyan"
               placeholder="Enter your email"
             />
             <input
@@ -74,13 +73,13 @@ const Signup = () => {
               autoComplete="new-password"
               value={form.password}
               onChange={handleChange}
-              className="w-full rounded-lg bg-ink border border-border px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-teal"
+              className="w-full rounded-lg bg-ink border border-border px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-cyan"
               placeholder="Create a password"
             />
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-mint hover:bg-mint-dark text-ink text-sm font-medium rounded-lg py-3 mt-2 transition disabled:opacity-60"
+              className="w-full bg-gradient-to-r from-purple to-cyan text-ink text-sm font-semibold rounded-lg py-3 mt-2 shadow-glow-purple hover:brightness-110 transition disabled:opacity-60 disabled:hover:brightness-100"
             >
               {submitting ? "Creating account..." : "Sign Up"}
             </button>
@@ -89,7 +88,7 @@ const Signup = () => {
 
         <p className="mt-6 text-sm text-center text-fog">
           Already have an account?{" "}
-          <Link to="/login" className="text-teal font-medium hover:underline">
+          <Link to="/login" className="text-cyan font-medium hover:underline">
             Log in
           </Link>
         </p>

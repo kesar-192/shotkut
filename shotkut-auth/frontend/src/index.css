@@ -3,14 +3,69 @@
 @tailwind utilities;
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #0B0D10;
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #0A0A10;
+}
+
+/* Glass card surface - the shared material for every panel in Sylva */
+.glass {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Signature element: the Aura ring - a slowly rotating conic gradient
+   halo, used around avatars and story circles. It's the one place the
+   "aura/energy" concept in the brief becomes a literal visual motif;
+   everything else stays flat and quiet by comparison. */
+@keyframes aura-spin {
+  to { transform: rotate(360deg); }
+}
+.aura-ring {
+  position: relative;
+  display: inline-flex;
+}
+.aura-ring::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background: conic-gradient(from 0deg, #A855F7, #22D3EE, #A855F7);
+  animation: aura-spin 6s linear infinite;
+  z-index: 0;
+}
+.aura-ring.aura-ring--idle::before {
+  background: conic-gradient(from 0deg, #3f3f46, #52525b, #3f3f46);
+  animation: none;
+}
+.aura-ring > * {
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.35; }
 }
-.status-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
+.status-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+@keyframes like-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+.like-pop { animation: like-pop 0.35s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aura-ring::before, .status-dot, .like-pop {
+    animation: none !important;
+  }
+}
+
+/* Slim custom scrollbar for the feed column */
+.feed-scroll::-webkit-scrollbar { width: 6px; }
+.feed-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 9999px;
 }
