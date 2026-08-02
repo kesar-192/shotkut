@@ -4,21 +4,20 @@
 
 body {
   font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #0A0A10;
+  background-color: #0B0F17;
 }
 
 /* Glass card surface - the shared material for every panel in Sylva */
 .glass {
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(64, 161, 157, 0.2);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
-/* Signature element: the Aura ring - a slowly rotating conic gradient
-   halo, used around avatars and story circles. It's the one place the
-   "aura/energy" concept in the brief becomes a literal visual motif;
-   everything else stays flat and quiet by comparison. */
+/* Signature element: the Aura ring - a slow, quiet rotating gradient
+   halo in two tones of teal (not a loud multi-color spin), used around
+   avatars and story circles. */
 @keyframes aura-spin {
   to { transform: rotate(360deg); }
 }
@@ -29,15 +28,17 @@ body {
 .aura-ring::before {
   content: "";
   position: absolute;
-  inset: -3px;
+  inset: -2px;
   border-radius: 9999px;
-  background: conic-gradient(from 0deg, #A855F7, #22D3EE, #A855F7);
-  animation: aura-spin 6s linear infinite;
+  background: conic-gradient(from 0deg, #40A19D, #5FC4C0, #2F7D7A, #40A19D);
+  animation: aura-spin 9s linear infinite;
   z-index: 0;
+  opacity: 0.9;
 }
 .aura-ring.aura-ring--idle::before {
-  background: conic-gradient(from 0deg, #3f3f46, #52525b, #3f3f46);
+  background: conic-gradient(from 0deg, #334155, #475569, #334155);
   animation: none;
+  opacity: 0.6;
 }
 .aura-ring > * {
   position: relative;
@@ -52,20 +53,31 @@ body {
 
 @keyframes like-pop {
   0% { transform: scale(1); }
-  40% { transform: scale(1.35); }
+  40% { transform: scale(1.3); }
   100% { transform: scale(1); }
 }
 .like-pop { animation: like-pop 0.35s ease-out; }
 
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.toast-in { animation: toast-in 0.2s ease-out; }
+
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.97) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-in { animation: modal-in 0.18s ease-out; }
+
 @media (prefers-reduced-motion: reduce) {
-  .aura-ring::before, .status-dot, .like-pop {
+  .aura-ring::before, .status-dot, .like-pop, .toast-in, .modal-in {
     animation: none !important;
   }
 }
 
-/* Slim custom scrollbar for the feed column */
 .feed-scroll::-webkit-scrollbar { width: 6px; }
 .feed-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.12);
+  background: rgba(64,161,157,0.2);
   border-radius: 9999px;
 }

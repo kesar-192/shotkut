@@ -21,7 +21,7 @@ export const mockPosts = [
     caption: "3am debugging arc but the vibes were immaculate ✨",
     likes: 482,
     comments: 31,
-    gradient: "from-purple to-cyan",
+    gradient: "from-teal-deep to-teal",
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ export const mockPosts = [
     caption: "shipped my first full-stack app today, main character energy fr",
     likes: 1204,
     comments: 88,
-    gradient: "from-cyan to-purple",
+    gradient: "from-teal to-teal-deep",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export const mockPosts = [
     caption: "redesigning everything at 2am is a personality trait at this point",
     likes: 367,
     comments: 19,
-    gradient: "from-purple-soft to-cyan-soft",
+    gradient: "from-teal-soft to-teal",
   },
 ];
 

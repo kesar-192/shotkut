@@ -34,18 +34,18 @@ const PostCard = ({ post }) => {
       <div className={`mx-4 mt-3 rounded-xl h-48 sm:h-56 bg-gradient-to-br ${post.gradient} opacity-80`} />
 
       <div className="flex items-center gap-5 px-4 py-3.5 text-fog">
-        <button onClick={toggleLike} className="flex items-center gap-1.5 hover:text-purple-soft transition">
+        <button onClick={toggleLike} className="flex items-center gap-1.5 hover:text-teal transition">
           <Heart
             size={19}
-            className={`${popped ? "like-pop" : ""} ${liked ? "text-purple-soft fill-purple-soft" : ""}`}
+            className={`${popped ? "like-pop" : ""} ${liked ? "text-teal fill-teal" : ""}`}
           />
           <span className="text-xs font-mono">{likeCount}</span>
         </button>
-        <button className="flex items-center gap-1.5 hover:text-cyan transition">
+        <button className="flex items-center gap-1.5 hover:text-teal transition">
           <MessageCircle size={19} />
           <span className="text-xs font-mono">{post.comments}</span>
         </button>
-        <button className="hover:text-cyan transition">
+        <button className="hover:text-teal transition">
           <Repeat2 size={19} />
         </button>
         <button className="ml-auto hover:text-paper transition">

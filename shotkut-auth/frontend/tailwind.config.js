@@ -4,21 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Sylva brand tokens - deep charcoal base, glass surfaces,
-        // neon purple + electric cyan as the "aura" accent pair.
-        ink: "#0A0A10",
-        charcoal: "#111117",
-        glass: "rgba(255,255,255,0.045)",
-        glassBorder: "rgba(255,255,255,0.09)",
-        paper: "#F5F5F8",
-        fog: "#9CA3AF",
-        purple: {
-          DEFAULT: "#A855F7",
-          soft: "#C084FC",
-        },
-        cyan: {
-          DEFAULT: "#22D3EE",
-          soft: "#67E8F9",
+        // Sylva v2 - elegant single-accent palette. Deep slate base,
+        // one restrained teal accent (no dual neon), quiet glass panels.
+        ink: "#0B0F17",
+        charcoal: "#151B26",
+        glass: "rgba(255,255,255,0.035)",
+        glassBorder: "rgba(64,161,157,0.2)",
+        paper: "#F8FAFC",
+        fog: "#94A3B8",
+        teal: {
+          DEFAULT: "#40A19D",
+          soft: "#5FC4C0",
+          deep: "#2F7D7A",
         },
       },
       fontFamily: {
@@ -27,8 +24,7 @@ export default {
         mono: ['"JetBrains Mono"', "monospace"],
       },
       boxShadow: {
-        "glow-purple": "0 0 30px -5px rgba(168,85,247,0.5)",
-        "glow-cyan": "0 0 30px -5px rgba(34,211,238,0.45)",
+        "glow-teal": "0 0 30px -8px rgba(64,161,157,0.55)",
       },
     },
   },

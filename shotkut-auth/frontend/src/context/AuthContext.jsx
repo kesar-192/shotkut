@@ -47,8 +47,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateProfile = async (updates) => {
+    const { data } = await axiosClient.patch("/auth/profile", updates);
+    setUser(data.user);
+    return data.user;
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, signup, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, signup, login, logout, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );

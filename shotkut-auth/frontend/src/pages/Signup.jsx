@@ -52,7 +52,7 @@ const Signup = () => {
               autoComplete="name"
               value={form.name}
               onChange={handleChange}
-              className="w-full rounded-lg bg-ink border border-border px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-cyan"
+              className="w-full rounded-lg bg-ink border border-glassBorder px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-teal"
               placeholder="Full name"
             />
             <input
@@ -62,7 +62,7 @@ const Signup = () => {
               autoComplete="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full rounded-lg bg-ink border border-border px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-cyan"
+              className="w-full rounded-lg bg-ink border border-glassBorder px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-teal"
               placeholder="Enter your email"
             />
             <input
@@ -73,13 +73,13 @@ const Signup = () => {
               autoComplete="new-password"
               value={form.password}
               onChange={handleChange}
-              className="w-full rounded-lg bg-ink border border-border px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-cyan"
+              className="w-full rounded-lg bg-ink border border-glassBorder px-4 py-3 text-sm text-paper placeholder-fog outline-none transition focus:border-teal"
               placeholder="Create a password"
             />
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-gradient-to-r from-purple to-cyan text-ink text-sm font-semibold rounded-lg py-3 mt-2 shadow-glow-purple hover:brightness-110 transition disabled:opacity-60 disabled:hover:brightness-100"
+              className="w-full bg-gradient-to-r from-teal to-teal-soft text-ink text-sm font-semibold rounded-lg py-3 mt-2 shadow-glow-teal hover:brightness-110 transition disabled:opacity-60 disabled:hover:brightness-100"
             >
               {submitting ? "Creating account..." : "Sign Up"}
             </button>
@@ -88,7 +88,7 @@ const Signup = () => {
 
         <p className="mt-6 text-sm text-center text-fog">
           Already have an account?{" "}
-          <Link to="/login" className="text-cyan font-medium hover:underline">
+          <Link to="/login" className="text-teal font-medium hover:underline">
             Log in
           </Link>
         </p>
