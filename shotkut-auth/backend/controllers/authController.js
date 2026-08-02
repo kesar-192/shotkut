@@ -6,6 +6,20 @@ import {
   refreshCookieOptions,
 } from "../utils/generateTokens.js";
 
+// Shapes the public-facing user object consistently across every
+// endpoint that returns one, so the frontend always gets the same shape.
+const toPublicUser = (user) => ({
+  id: user._id,
+  name: user.name,
+  email: user.email,
+  bio: user.bio,
+  avatarUrl: user.avatarUrl,
+  statusTag: user.statusTag,
+  auraPoints: user.auraPoints,
+  rizzStreak: user.rizzStreak,
+  createdAt: user.createdAt,
+});
+
 // @route POST /api/auth/register
 export const registerUser = async (req, res) => {
   try {
@@ -31,7 +45,7 @@ export const registerUser = async (req, res) => {
     res.cookie("refreshToken", refreshToken, refreshCookieOptions);
 
     res.status(201).json({
-      user: { id: user._id, name: user.name, email: user.email },
+      user: toPublicUser(user),
       accessToken,
     });
   } catch (error) {
@@ -67,7 +81,7 @@ export const loginUser = async (req, res) => {
     res.cookie("refreshToken", refreshToken, refreshCookieOptions);
 
     res.status(200).json({
-      user: { id: user._id, name: user.name, email: user.email },
+      user: toPublicUser(user),
       accessToken,
     });
   } catch (error) {
@@ -143,9 +157,40 @@ export const getProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.status(200).json({
-      user: { id: user._id, name: user.name, email: user.email, createdAt: user.createdAt },
+    res.status(200).json({ user: toPublicUser(user) });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+// @route PATCH /api/auth/profile
+// Protected route - lets a user update their own name, bio, avatar,
+// and status tag. auraPoints/rizzStreak are intentionally NOT editable
+// here - they're meant to be system-derived, not self-reported.
+export const updateProfile = async (req, res) => {
+  try {
+    const { name, bio, avatarUrl, statusTag } = req.body;
+    const updates = {};
+
+    if (name !== undefined) {
+      if (!name.trim()) {
+        return res.status(400).json({ message: "Name cannot be empty" });
+      }
+      updates.name = name.trim();
+    }
+    if (bio !== undefined) updates.bio = bio.slice(0, 160);
+    if (avatarUrl !== undefined) updates.avatarUrl = avatarUrl.trim();
+    if (statusTag !== undefined) updates.statusTag = statusTag.slice(0, 40);
+
+    const user = await User.findByIdAndUpdate(req.userId, updates, {
+      new: true,
+      runValidators: true,
     });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ user: toPublicUser(user) });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }

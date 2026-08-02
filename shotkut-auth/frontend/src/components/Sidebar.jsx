@@ -1,12 +1,13 @@
-import { Home, Compass, MessageCircle, Bell, Zap, Settings, LogOut } from "lucide-react";
+import { NavLink } from "react-router-dom";
+import { Home, Compass, MessageCircle, Bell, Settings, User, LogOut } from "lucide-react";
 
 const navItems = [
-  { icon: Home, label: "Feed", active: true },
-  { icon: Compass, label: "Explore" },
-  { icon: MessageCircle, label: "Messages" },
-  { icon: Bell, label: "Notifications" },
-  { icon: Zap, label: "Aura / Stats" },
-  { icon: Settings, label: "Profile Settings" },
+  { to: "/dashboard", end: true, icon: Home, label: "Feed" },
+  { to: "/dashboard/explore", icon: Compass, label: "Explore" },
+  { to: "/dashboard/messages", icon: MessageCircle, label: "Messages" },
+  { to: "/dashboard/notifications", icon: Bell, label: "Notifications" },
+  { to: "/dashboard/profile", icon: User, label: "Profile" },
+  { to: "/dashboard/settings", icon: Settings, label: "Settings" },
 ];
 
 const Sidebar = ({ onLogout }) => {
@@ -21,22 +22,30 @@ const Sidebar = ({ onLogout }) => {
         </span>
       </div>
 
-      {navItems.map(({ icon: Icon, label, active }) => (
-        <button
+      {navItems.map(({ to, end, icon: Icon, label }) => (
+        <NavLink
           key={label}
-          className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${
-            active
-              ? "bg-white/[0.06] text-paper"
-              : "text-fog hover:bg-white/[0.04] hover:text-paper"
-          }`}
+          to={to}
+          end={end}
+          className={({ isActive }) =>
+            `group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${
+              isActive
+                ? "bg-white/[0.06] text-paper"
+                : "text-fog hover:bg-white/[0.04] hover:text-paper"
+            }`
+          }
         >
-          <Icon
-            size={20}
-            strokeWidth={2}
-            className={active ? "text-cyan" : "group-hover:text-purple-soft transition-colors"}
-          />
-          <span className="hidden xl:inline font-medium">{label}</span>
-        </button>
+          {({ isActive }) => (
+            <>
+              <Icon
+                size={20}
+                strokeWidth={2}
+                className={isActive ? "text-teal" : "group-hover:text-teal transition-colors"}
+              />
+              <span className="hidden xl:inline font-medium">{label}</span>
+            </>
+          )}
+        </NavLink>
       ))}
 
       <button

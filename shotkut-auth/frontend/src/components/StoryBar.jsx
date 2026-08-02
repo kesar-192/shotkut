@@ -11,7 +11,7 @@ const StoryBar = ({ stories }) => {
                 {story.name[0]?.toUpperCase()}
               </span>
               {story.isUser && (
-                <span className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full bg-gradient-to-r from-purple to-cyan flex items-center justify-center">
+                <span className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full bg-teal flex items-center justify-center">
                   <Plus size={12} className="text-ink" strokeWidth={3} />
                 </span>
               )}
