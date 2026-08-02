@@ -43,12 +43,16 @@ const TopHeader = ({ user, onLogout }) => {
           <LogOut size={19} />
         </button>
 
-        <button className="relative text-fog hover:text-paper transition">
+        <button
+          onClick={() => navigate("/dashboard/notifications")}
+          className="relative text-fog hover:text-paper transition"
+          aria-label="Notifications"
+        >
           <Bell size={20} />
           <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-teal status-dot" />
         </button>
 
-        <div className="aura-ring">
+        <button onClick={() => navigate("/dashboard/profile")} aria-label="View profile" className="aura-ring">
           <div className="w-9 h-9 rounded-full bg-charcoal flex items-center justify-center m-[3px] overflow-hidden">
             {user?.avatarUrl ? (
               <img src={user.avatarUrl} alt={user.name} className="w-full h-full object-cover" />
@@ -56,7 +60,7 @@ const TopHeader = ({ user, onLogout }) => {
               <span className="text-xs font-semibold text-paper">{getInitials(user?.name) || "?"}</span>
             )}
           </div>
-        </div>
+        </button>
       </div>
     </header>
   );

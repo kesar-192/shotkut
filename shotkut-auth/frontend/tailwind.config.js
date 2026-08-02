@@ -4,18 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Sylva v2 - elegant single-accent palette. Deep slate base,
-        // one restrained teal accent (no dual neon), quiet glass panels.
-        ink: "#0B0F17",
-        charcoal: "#151B26",
-        glass: "rgba(255,255,255,0.035)",
-        glassBorder: "rgba(64,161,157,0.2)",
-        paper: "#F8FAFC",
-        fog: "#94A3B8",
+        // Sylva v3 - CSS-variable-backed tokens so Settings > Appearance
+        // can genuinely retheme the app at runtime (Dark/AMOLED/Light,
+        // plus an accent color picker) without a rebuild.
+        ink: "rgb(var(--c-ink) / <alpha-value>)",
+        charcoal: "rgb(var(--c-charcoal) / <alpha-value>)",
+        glass: "rgb(var(--c-glass) / <alpha-value>)",
+        glassBorder: "rgb(var(--c-teal) / 0.2)",
+        paper: "rgb(var(--c-paper) / <alpha-value>)",
+        fog: "rgb(var(--c-fog) / <alpha-value>)",
         teal: {
-          DEFAULT: "#40A19D",
-          soft: "#5FC4C0",
-          deep: "#2F7D7A",
+          DEFAULT: "rgb(var(--c-teal) / <alpha-value>)",
+          soft: "rgb(var(--c-teal-soft) / <alpha-value>)",
+          deep: "rgb(var(--c-teal-deep) / <alpha-value>)",
         },
       },
       fontFamily: {
@@ -24,7 +25,7 @@ export default {
         mono: ['"JetBrains Mono"', "monospace"],
       },
       boxShadow: {
-        "glow-teal": "0 0 30px -8px rgba(64,161,157,0.55)",
+        "glow-teal": "0 0 30px -8px rgb(var(--c-teal) / 0.55)",
       },
     },
   },

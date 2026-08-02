@@ -6,6 +6,7 @@ import Feed from "./pages/Feed.jsx";
 import Explore from "./pages/Explore.jsx";
 import Messages from "./pages/Messages.jsx";
 import Notifications from "./pages/Notifications.jsx";
+import Profile from "./pages/Profile.jsx";
 import Settings from "./pages/Settings.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="explore" element={<Explore />} />
         <Route path="messages" element={<Messages />} />
         <Route path="notifications" element={<Notifications />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="settings" element={<Settings />} />
       </Route>
     </Routes>

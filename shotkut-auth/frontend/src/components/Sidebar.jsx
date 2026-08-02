@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { Home, Compass, MessageCircle, Bell, Settings, LogOut } from "lucide-react";
+import { Home, Compass, MessageCircle, Bell, Settings, User, LogOut } from "lucide-react";
 
 const navItems = [
   { to: "/dashboard", end: true, icon: Home, label: "Feed" },
   { to: "/dashboard/explore", icon: Compass, label: "Explore" },
   { to: "/dashboard/messages", icon: MessageCircle, label: "Messages" },
   { to: "/dashboard/notifications", icon: Bell, label: "Notifications" },
+  { to: "/dashboard/profile", icon: User, label: "Profile" },
   { to: "/dashboard/settings", icon: Settings, label: "Settings" },
 ];
 
